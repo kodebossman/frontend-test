@@ -1,0 +1,55 @@
+<div class="clr-row">
+  <div class="clr-col-lg-12 clr-col-md-12 clr-col-12">
+    <clr-alert *ngIf="isAddSuccess" [clrAlertType]="'success'">
+      <clr-alert-item>
+        <span class="alert-text">{{ placeholderMessage }} </span>
+      </clr-alert-item>
+    </clr-alert>
+    <div class="card">
+      <div class="card-header">
+        Employees
+      </div>
+      <div class="card-block">
+        <app-add-employees companyId= "companyId" (isAddSuccess)="addSuccess($event)"></app-add-employees>
+        <br>
+        <br>
+
+        <clr-datagrid [clrDgLoading]="loading">
+          <clr-dg-column [clrDgField]="'name'">Employee Name</clr-dg-column>
+          <clr-dg-column [clrDgField]="'vatNumber'">Employee last name</clr-dg-column>
+          <clr-dg-column [clrDgField]="'vatNumber'">Identity number</clr-dg-column>
+          <clr-dg-column [clrDgField]="'vatNumber'">Date of birth</clr-dg-column>
+          <clr-dg-column [clrDgField]="'addressPhysical'">Physical address</clr-dg-column>
+          <clr-dg-column [clrDgField]="'addressPostal'">Postal address</clr-dg-column>
+          <clr-dg-column [clrDgField]="'telephoneNumber'">Telephone number</clr-dg-column>
+          <clr-dg-placeholder>{{placeholderMessage}}</clr-dg-placeholder>
+          <clr-dg-row *clrDgItems="let employee of employees">
+            <clr-dg-action-overflow>
+              <button class="action-item" (click)="promptEdit(employee)">Edit</button>
+              <!-- <button class="action-item" (click)="viewEmployee(employees.id)">View</button> -->
+            </clr-dg-action-overflow>
+            <clr-dg-cell>{{employee?.firstName}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.lastName}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.identityNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.dateOfBirth}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.addressPhysical}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.addressPostal}}</clr-dg-cell>
+            <clr-dg-cell>{{employee?.telephoneNumber}}</clr-dg-cell>
+
+          </clr-dg-row>
+
+          <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgTotalItems]="employees?.length">
+              <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>
+              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+              of {{employees?.length}} Users
+            </clr-dg-pagination>
+          </clr-dg-footer>
+        </clr-datagrid>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-edit-employee *ngIf="isEdit" [employee]="selectedEmployee" (updatedUser)="updateEmployee($event)">
+</app-edit-employee>

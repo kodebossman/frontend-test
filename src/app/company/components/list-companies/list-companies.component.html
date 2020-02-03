@@ -1,0 +1,51 @@
+
+<div class="clr-row">
+  <div class="clr-col-lg-12 clr-col-md-12 clr-col-12">
+      <clr-alert *ngIf="isAddSuccess" [clrAlertType]="'success'">
+          <clr-alert-item>
+              <span class="alert-text">{{ placeholderMessage }} </span>
+          </clr-alert-item>
+      </clr-alert>
+      <div class="card">
+          <div class="card-header">
+              Companies
+          </div>
+          <div class="card-block">
+              <app-add-company (isAddSuccess)="addSuccess($event)"></app-add-company>
+              <br>
+              <br>
+
+              <clr-datagrid [clrDgLoading]="loading">
+                      <clr-dg-column [clrDgField]="'name'">Company Name</clr-dg-column>
+                      <clr-dg-column [clrDgField]="'vatNumber'">Vat Number</clr-dg-column>
+                      <clr-dg-column [clrDgField]="'addressPhysical'">Physical address</clr-dg-column>
+                      <clr-dg-column [clrDgField]="'addressPostal'">Postal address</clr-dg-column>
+                      <clr-dg-column [clrDgField]="'telephoneNumber'">Telephone number</clr-dg-column>
+                      <clr-dg-placeholder>{{placeholderMessage}}</clr-dg-placeholder>
+                      <clr-dg-row *clrDgItems="let company of companies">
+                      <clr-dg-action-overflow>
+                          <button class="action-item" (click)="promptEdit(company)">Edit</button>
+                          <button class="action-item" (click)="viewCompany(company.id)">View</button>
+                      </clr-dg-action-overflow>
+                      <clr-dg-cell>{{company?.name}}</clr-dg-cell>
+                      <clr-dg-cell>{{company?.vatNumber}}</clr-dg-cell>
+                      <clr-dg-cell>{{company?.addressPhysical}}</clr-dg-cell>
+                      <clr-dg-cell>{{company?.addressPostal}}</clr-dg-cell>
+                      <clr-dg-cell>{{company?.telephoneNumber}}</clr-dg-cell>
+
+                      </clr-dg-row>
+
+                      <clr-dg-footer>
+                          <clr-dg-pagination #pagination [clrDgTotalItems]="companies?.length">
+                              <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>
+                              {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                              of {{companies?.length}} Users
+                          </clr-dg-pagination>
+                      </clr-dg-footer>
+                  </clr-datagrid>
+          </div>
+      </div>
+  </div>
+</div>
+
+<app-edit-company *ngIf="isEdit" [company]="selectedCompany" (updatedUser)="updateCompany($event)"></app-edit-company>

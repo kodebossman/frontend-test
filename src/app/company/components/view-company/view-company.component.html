@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Company Details
+  </div>
+  <div class="card-block">
+    <clr-stack-view>
+      <clr-stack-block [clrStackViewLevel]="1" [clrStackViewSetsize]="2" [clrStackViewPosinset]="2">
+        <clr-stack-label>Company Name</clr-stack-label>
+        <clr-stack-content>{{company?.name}}</clr-stack-content>
+      </clr-stack-block>
+
+      <clr-stack-block [clrStackViewLevel]="1" [clrStackViewSetsize]="2" [clrStackViewPosinset]="2">
+        <clr-stack-label>Vat Number</clr-stack-label>
+        <clr-stack-content>{{company?.vatNumber}}</clr-stack-content>
+      </clr-stack-block>
+
+      <clr-stack-block [clrStackViewLevel]="1" [clrStackViewSetsize]="2" [clrStackViewPosinset]="2">
+        <clr-stack-label>Physical address</clr-stack-label>
+        <clr-stack-content>{{company?.addressPhysical}}</clr-stack-content>
+      </clr-stack-block>
+
+      <clr-stack-block [clrStackViewLevel]="1" [clrStackViewSetsize]="2" [clrStackViewPosinset]="2">
+        <clr-stack-label>Postal address</clr-stack-label>
+        <clr-stack-content>{{company?.addressPostal}}</clr-stack-content>
+      </clr-stack-block>
+
+      <clr-stack-block [clrStackViewLevel]="1" [clrStackViewSetsize]="2" [clrStackViewPosinset]="2">
+        <clr-stack-label>Telephone number</clr-stack-label>
+        <clr-stack-content>{{company?.telephoneNumber}}</clr-stack-content>
+      </clr-stack-block>
+    </clr-stack-view>
+    <br>
+    <app-list-employees  [companyId] = "companyId"></app-list-employees>
+  </div>
+</div>

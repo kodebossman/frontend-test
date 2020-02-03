@@ -1,0 +1,67 @@
+<button class="btn btn-sm" (click)="promptAdd()">CREATE COMPANY</button>
+
+<clr-modal [(clrModalOpen)]="isAdd" [clrModalSize]="'lg'">
+  <h3 class="modal-title">Add New Company</h3>
+  <div class="modal-body">
+    <clr-alert *ngIf="isAlert" [clrAlertType]="'danger'">
+      <clr-alert-item>
+        <span class="alert-text"> {{ message }} </span>
+      </clr-alert-item>
+    </clr-alert>
+    <br />
+
+    <form clrForm [formGroup]="companyForm" (ngSubmit)="addCompany()">
+      <section class="form-block">
+        <div class="col-md-12">
+          <clr-input-container>
+            <label class="required clr-col-xs-12 clr-col-md-4">Company Name</label>
+            <input class="required clr-col-xs-12 clr-col-md-5" clrInput formControlName="name" type="text" size="40" />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+        </div>
+
+        <div class="col-md-12">
+          <clr-input-container>
+            <label class="required clr-col-xs-12 clr-col-md-4">Vat Number</label>
+            <input class="required clr-col-xs-12 clr-col-md-5" clrInput formControlName="vatNumber" size="40" />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+        </div>
+        <div class="col-md-12">
+          <clr-input-container>
+            <label class="required clr-col-xs-12 clr-col-md-4">Physical Address</label>
+            <input class="required clr-col-xs-12 clr-col-md-5" clrInput formControlName="addressPhysical" type="text"
+              size="40" />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+        </div>
+
+        <div class="col-md-12">
+          <clr-input-container>
+            <label class="required clr-col-xs-12 clr-col-md-4">Postal address</label>
+            <input class="required clr-col-xs-12 clr-col-md-5" clrInput formControlName="addressPostal" size="40" />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+        </div>
+
+        <div class="col-md-12">
+          <clr-input-container>
+            <label class="required clr-col-xs-12 clr-col-md-4">Telephone number</label>
+            <input class="required clr-col-xs-12 clr-col-md-5" clrInput formControlName="telephoneNumber" size="40" />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+        </div>
+
+      </section>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="isAdd = false">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary" (click)="addCompany()">
+      Add
+    </button>
+  </div>
+</clr-modal>
